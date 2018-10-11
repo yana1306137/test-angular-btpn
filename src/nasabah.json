@@ -1,0 +1,11 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "nomor_nasabah": 1,
+            "nama_nasabah": "Yana",
+            "tanggal_lahir": "1994-10-10",
+            "pendapatan": 10000000
+        }
+    ]
+}

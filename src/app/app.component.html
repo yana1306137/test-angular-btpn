@@ -1,0 +1,53 @@
+<div>
+  <div class="padding">
+    <form [formGroup]="formNasabah" (ngSubmit)="submit()">
+      <label class="label-width"> Nomor Nasabah
+        <br>
+        <input class="form-control input-width" formControlName="nomor_nasabah" type="number"/>
+      </label>
+      <label class="label-width"> Nama Nasabah
+        <br>
+        <input class="form-control input-width" formControlName="nama_nasabah"/>
+      </label>
+      <label class="label-width"> Tanggal Lahir
+        <br>
+        <input class="form-control input-width" formControlName="tanggal_lahir" type="date"/>
+      </label>
+      <label class="label-width"> Pendapatan
+        <br>
+        <input class="form-control input-width" formControlName="pendapatan" type="number"/>
+      </label>
+    </form>    
+    <button class="btn btn-primary" (click)="submit()"> {{button}} </button>
+    <button class="btn btn-success" type="button" *ngIf="button == 'Ubah'" (click)="clear()">Clear</button>
+  </div>
+
+  <div class="padding">
+    <label class="label-width"> Filter Nama Nasabah
+    <input class="form-control input-width" [(ngModel)]="nasabah" name="nasabah" (keyup)="filterNama($event)">
+    </label>
+  </div>
+
+  <div class="padding">
+    <ngx-datatable
+    #table
+    class='material'
+    [columnMode]="'flex'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [limit]="5"
+    [rows]='dataNasabah'>
+    <ngx-datatable-column name="Nomor Nasabah" prop="nomor_nasabah" [flexGrow]="2"></ngx-datatable-column>
+    <ngx-datatable-column name="Nama Nasabah" prop="nama_nasabah" [flexGrow]="3"></ngx-datatable-column>
+    <ngx-datatable-column name="Tanggal Lahir" prop="tanggal_lahir" [flexGrow]="2"></ngx-datatable-column>
+    <ngx-datatable-column name="Pendapatan" prop="pendapatan" [flexGrow]="2"></ngx-datatable-column>
+    <ngx-datatable-column name="Aksi" [flexGrow]="2">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+        <button class="btn btn-success" (click)="getDetail(row.id, rowIndex)">Edit</button>
+        <button class="btn btn-warning btn-margin" (click)="deleteDataNasabah(row.id, rowIndex)">Delete</button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  </div>
+</div>
